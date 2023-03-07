@@ -9,10 +9,10 @@ import {TestExampleButton} from "../src/components/TestExampleButton";
 
 
 describe('Components tests', () => {
-  it('should show Doggr in title component', () => {
+  it('should show Arcade in title component', () => {
     render(<Title />);
 
-		expect(screen.getByText("Doggr"))
+		expect(screen.getByText("Cat_Arcade"))
 			.toBeDefined();
   });
 

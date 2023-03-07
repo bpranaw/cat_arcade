@@ -1,4 +1,4 @@
-# DOGGR SETUP
+# CAT_ARCADE SETUP
 (All commands are with respect to the root directory of the project)
 
 > Clone repository
