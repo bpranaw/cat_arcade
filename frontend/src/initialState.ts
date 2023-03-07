@@ -1,4 +1,4 @@
-import {State, ProfileType} from "./types/DoggrTypes";
+import {State, ProfileType} from "./types/Cat_ArcadeTypes";
 
 
 const initialState: { likeHistory: ProfileType[]; currentProfile: ProfileType } = {
@@ -14,7 +14,7 @@ export function getRandomProfile(): ProfileType {
 	return {
 		imgUri: `https://loremflickr.com/300/300/animal?lock=${idNum}`,
 		thumbUri: `https://loremflickr.com/75/75/animal?lock=${idNum}`,
-		name: `Doggr${idNum}`,
+		name: `Cat_Arcade${idNum}`,
 		id: idNum,
 	};
 }

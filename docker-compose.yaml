@@ -9,9 +9,9 @@ services:
     volumes:
       - db:/var/lib/postgresql/data
     environment:
-      - POSTGRES_USER=doggr
-      - POSTGRES_PASSWORD=doggr
-      - POSTGRES_DB=doggr
+      - POSTGRES_USER=cat_arcade
+      - POSTGRES_PASSWORD=cat_arcade
+      - POSTGRES_DB=cat_arcade
     #network_mode: host
 #  backend:
 #    container_name: backend

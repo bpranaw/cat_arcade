@@ -1,4 +1,4 @@
-name: Doggr CICD
+name: Cat_Arcade CICD
 
 on:
   push:

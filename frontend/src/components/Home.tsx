@@ -10,7 +10,7 @@ export default function Home() {
 }
 
 export function Title() {
-  return (<h1>Doggr</h1>)
+  return (<h1>Cat_Arcade</h1>)
 }
 
 export function Subtitle() {

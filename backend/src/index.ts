@@ -13,7 +13,7 @@ import {getModeFromArgs, RunMode} from "./lib/helpers";
 const app = await buildApp(true);
 
 try {
-// Add some DIY seeding to doggr!
+// Add some DIY seeding to cat_arcade!
 	switch (getModeFromArgs()) {
 		case RunMode.LISTEN: {
 			// Make our app start listening
@@ -37,5 +37,5 @@ try {
 	app.log.error(err);
 }
 
-// boilerplate - doggr here matches with vite.config.js::exportName
-export const doggr = app;
+// boilerplate - cat_arcade here matches with vite.config.js::exportName
+export const cat_arcade = app;

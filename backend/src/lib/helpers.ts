@@ -16,7 +16,7 @@ export function getDirName(meta: ImportMeta) {
 }
 
 /**
- * Determines which mode to start Doggr backend in
+ * Determines which mode to start Cat_Arcade backend in
  */
 export enum RunMode {
 	LISTEN,
