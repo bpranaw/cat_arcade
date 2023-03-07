@@ -1,0 +1,1 @@
+03/06/2023 - I have spent most of today trying to remove the unnecessary portions of doggr, but for some reason I can't shake the calls to the match.ts or message.ts files. Also typeorm really likes referencing them as well.
