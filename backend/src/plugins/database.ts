@@ -9,6 +9,7 @@ import {FastifyInstance, FastifyPluginOptions} from "fastify";
 import {AppDataSource} from "../db/datasources/dev_datasource";
 import {Profile} from "../db/models/profile";
 import {Message} from "../db/models/message";
+import {Game} from "../db/models/game";
 
 
 /** This is AWESOME - we're telling typescript we're adding our own "thing" to base 'app', so we get FULL IDE/TS support */
@@ -31,8 +32,8 @@ interface DBConfigOpts {
 	ip: Repository<IPHistory>,
 	profile: Repository<Profile>,
 	match: Repository<Match>,
-
 	message: Repository<Message>,
+	game: Repository<Game>,
 	connection: DataSource,
 }
 
@@ -57,6 +58,7 @@ const DbPlugin = fp(async (app: FastifyInstance, options: FastifyPluginOptions, 
 		match: dataSourceConnection.getRepository(Match),
 		message: dataSourceConnection.getRepository(Message),
 		profile: dataSourceConnection.getRepository(Profile),
+		game: dataSourceConnection.getRepository(Game)
 	});
 
 	done();
