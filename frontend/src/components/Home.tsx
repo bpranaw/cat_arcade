@@ -14,5 +14,5 @@ export function Title() {
 }
 
 export function Subtitle() {
-  return (<h3>Where your pets find love(tm)</h3>)
+  return (<h3>Where you'll always find a cat and a game to play!(tm)</h3>)
 }
