@@ -21,7 +21,6 @@ function App() {
         </div>
       </nav>
       <Routes>
-              <Route path="/match" element={<Match/>}/>
               <Route path="/" element={<Home/>}/>
             </Routes>
         </div>
