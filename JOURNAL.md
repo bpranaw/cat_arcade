@@ -10,3 +10,5 @@
              The next step is setting up authentication and a user page. I am currently researching auth0 authentication.
 03/21/2023 - I've been working on Auth0 stuff all morning to no avail, until now that is. For some reason, including the Auth0 SDK stuff in main.tsx just made the page go white. Turns out, it was a result of the Logout.tsx file
              not importing react. This was not easy to isolate until I went component by component. Im not entirely sure why this is, as react isn't actually directly referenced in Login.tsx or Logout.tsx, and Login.tsx didn't have this issue. I'm glad it's resolved and now I need to connect the login components with the backend so our users can actually store their scores.
+             After grinding my gears on trying to incorporate the backend stuff for auth0, I decided to take a break by adding in an old cat game I made. Eventually the goal would be to remake the game with react but right now
+             I'm short on time so the link just redirects to the static html page. I'm going to add a button on the game to send the high score to the backend, and if the user is logged in, to the database.

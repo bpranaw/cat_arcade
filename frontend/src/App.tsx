@@ -19,6 +19,7 @@ function App() {
         <div className="menu">
           <Link to="/">Home</Link>
           <Link to="/leaderboard">Leaderboard</Link>
+          <a href="/Games/CatJump/game.html">Cat Jump</a>
         </div>
       </nav>
       <Routes>
