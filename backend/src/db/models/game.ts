@@ -24,6 +24,9 @@ export class Game extends BaseEntity {
 	@Column()
 	name: string;
 
+	@Column()
+	game_name: string;
+
 	//I was going to have "score" as an entity as well in preparation for more advanced games,
 	//But this is much simpler so we will leave it as it is. A consequence though is we need a date the score was achieved here too
 	@Column()

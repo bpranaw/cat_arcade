@@ -31,7 +31,8 @@ export class GameSeeder extends Seeder {
 		for (let i = 0; i < users.length; i++) {
 			let newGame = new Game();
 			newGame.user = users[i];
-			newGame.name = "Pong";
+			newGame.name = users[i].name;
+			newGame.game_name = "Pong";
             newGame.high_score = Math.floor(Math.random() * 10);
 
             let date = new Date();

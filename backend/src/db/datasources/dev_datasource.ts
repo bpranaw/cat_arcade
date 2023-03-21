@@ -14,6 +14,7 @@ import { AddMessages1677588107950 } from "../migrations/1677588107950-AddMessage
 import { SoftDelete1677590464271 } from "../migrations/1677590464271-SoftDelete.js";
 import { Game } from "../models/game.js";
 import { GameMigration1678325090178 } from "../migrations/1678325090178-GameMigration.js";
+import { updateGame1679357585306 } from "../migrations/1679357585306-updateGame.js";
 
 dotenv.config();
 
@@ -42,7 +43,8 @@ export const AppDataSource = new DataSource({
         AddMatches1677583994719,
         AddMessages1677588107950,
         SoftDelete1677590464271,
-        GameMigration1678325090178
+        GameMigration1678325090178,
+        updateGame1679357585306
     ],
     // DANGER DANGER our convenience will nuke production data!
     synchronize: false
