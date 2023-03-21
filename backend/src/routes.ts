@@ -435,9 +435,18 @@ export async function cat_arcade_routes(app: FastifyInstance): Promise<void> {
 	
 	//Getting all high scores in order for Pong
 	app.get("/leaderboard/pong", async (req: any, reply: FastifyReply) => {
-		const query = app.db.game.createQueryBuilder("games").where("games.name = :name", { name: "Pong" }).orderBy("games.high_score", "DESC").getMany();
 
-		reply.send((await query));
+		const query = await app.db.game.createQueryBuilder("games").where("games.game_name = :name", { name: "Pong" }).orderBy("games.high_score", "DESC").getMany();	
+		//Does not work yet. Have to update the game database entity
+		let high_scores = [];
+		for(const element of query)
+		{
+			high_scores.push({
+				name: element.name,
+				score: element.high_score
+			});
+		}
+		reply.send(high_scores);
 	});
 
 	//Creating/updating a high score value
@@ -529,3 +538,4 @@ export type IPostUsersResponse = {
 	 */
 	ip_address: string
 }
+
