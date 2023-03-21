@@ -1,10 +1,12 @@
-import {Users} from "./User";
+import LoginButton from "./Login";
+import LogoutButton from "./Logout";
 
 export default function Home() {
   return (<div>
       <Title/>
       <Subtitle/>
-			<Users/>
+			<LoginButton/>
+      <LogoutButton/>
     </div>
   );
 }
