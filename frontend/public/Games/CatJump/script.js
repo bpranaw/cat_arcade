@@ -63,3 +63,8 @@ var check = setInterval(function () {
     document.getElementById("high_score").innerHTML = Math.floor(high_score);
   }
 }, 10);
+
+function save_score()
+{
+  
+}

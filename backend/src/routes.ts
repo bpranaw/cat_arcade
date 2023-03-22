@@ -433,10 +433,10 @@ export async function cat_arcade_routes(app: FastifyInstance): Promise<void> {
 	//***********************************************************************************************************************************************
 	//Leaderboard
 	
-	//Getting all high scores in order for Pong
-	app.get("/leaderboard/pong", async (req: any, reply: FastifyReply) => {
+	//Getting all high scores in order for catjump
+	app.get("/leaderboard/catjump", async (req: any, reply: FastifyReply) => {
 
-		const query = await app.db.game.createQueryBuilder("games").where("games.game_name = :name", { name: "Pong" }).orderBy("games.high_score", "DESC").getMany();	
+		const query = await app.db.game.createQueryBuilder("games").where("games.game_name = :name", { name: "catjump" }).orderBy("games.high_score", "DESC").getMany();	
 		reply.send(query);
 	});
 
