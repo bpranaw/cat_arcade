@@ -112,19 +112,24 @@ export async function cat_arcade_routes(app: FastifyInstance): Promise<void> {
 
 		const {name, email} = req.body;
 
-		const user = new User();
-		user.name = name;
-		user.email = email;
+		const findUser = await app.db.user.findOne({where: {name: name, email: email}});
 
-		const ip = new IPHistory();
-		ip.ip = req.ip;
-		ip.user = user;
-		// transactional, transitively saves user to users table as well IFF both succeed
-		await ip.save();
-
-		//manually JSON stringify due to fastify bug with validation
-		// https://github.com/fastify/fastify/issues/4017
-		await reply.send(JSON.stringify({user, ip_address: ip.ip}));
+		if(findUser == null)
+		{
+			const user = new User();
+			user.name = name;
+			user.email = email;
+	
+			const ip = new IPHistory();
+			ip.ip = req.ip;
+			ip.user = user;
+			// transactional, transitively saves user to users table as well IFF both succeed
+			await ip.save();
+	
+			//manually JSON stringify due to fastify bug with validation
+			// https://github.com/fastify/fastify/issues/4017
+			await reply.send(JSON.stringify({user, ip_address: ip.ip}));
+		}
 	});
 
 

@@ -1,5 +1,6 @@
 import LoginButton from "./Login";
 import LogoutButton from "./Logout";
+import UserProfile from "./userProfile";
 
 export default function Home() {
   return (<div>
@@ -7,6 +8,7 @@ export default function Home() {
       <Subtitle/>
 			<LoginButton/>
       <LogoutButton/>
+      <UserProfile/>
     </div>
   );
 }
