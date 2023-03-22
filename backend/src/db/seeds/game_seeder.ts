@@ -32,7 +32,7 @@ export class GameSeeder extends Seeder {
 			let newGame = new Game();
 			newGame.user = users[i];
 			newGame.name = users[i].name;
-			newGame.game_name = "Pong";
+			newGame.game_name = "catjump";
             newGame.high_score = Math.floor(Math.random() * 10);
 
             let date = new Date();
