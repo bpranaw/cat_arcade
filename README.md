@@ -3,6 +3,7 @@
 
 > Clone repository
 > Copy and configure .env file (cp backend/.env.example backend/.env)
+> Install pnpm if it is not already (npm install -g pnpm)
 > Install dependencies (cd backend/ && pnpm install)
 > Start database (docker compose up postgres)
 > Reset prior Typeorm setup (cd backend/ && pnpm typeorm:drop)
