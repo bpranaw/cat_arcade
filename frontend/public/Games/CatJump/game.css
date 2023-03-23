@@ -1,0 +1,95 @@
+#Header {
+  margin: auto;
+  text-align: center;
+  font-family: "Arial";
+  color: black;
+}
+
+#Game {
+  overflow-x: hidden;
+  overflow-y: hidden;
+
+  padding: 0;
+  margin: auto;
+  width: 600px;
+  height: 337px;
+
+  background-image: url(Sprites/forest.png);
+  border-radius: 2%;
+}
+
+@media screen and (max-width: 680px) {
+  #Game {
+    width: 100%;
+  }
+}
+
+#Cat {
+  width: 30px;
+  height: 33px;
+  background-color: none;
+  position: relative;
+  top: 304px;
+}
+
+.animate {
+  animation: jump 500ms linear;
+}
+
+#Obstacle {
+  width: 36px;
+  height: 36px;
+  background-color: none;
+  position: relative;
+
+  top: 268px;
+  left: 620px;
+  animation: obstacle_movement 1s infinite linear;
+}
+
+#Music {
+  padding: 100;
+  text-align: center;
+  margin: auto;
+}
+
+#Body {
+  background-color: black;
+}
+
+@keyframes obstacle_movement {
+  0% {
+    left: 620px;
+  }
+  100% {
+    left: -20px;
+  }
+
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(-359deg);
+  }
+}
+
+@keyframes jump {
+  0% {
+    top: 304px;
+  }
+  30% {
+    top: 254px;
+  }
+  70% {
+    top: 254px;
+  }
+  100% {
+    top: 304px;
+  }
+}
+
+#score_board {
+  margin: auto;
+  text-align: center;
+  color: black;
+}

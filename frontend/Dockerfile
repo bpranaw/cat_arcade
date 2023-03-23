@@ -1,18 +1,15 @@
 FROM node:18-alpine AS base
 
-
 RUN npm install -g pnpm
 
-WORKDIR /app/backend
+WORKDIR /app/frontend
 
 COPY . .
 
 RUN pnpm install
-RUN pnpm typeorm:drop
-RUN pnpm migration:run
-RUN pnpm seed
 
-EXPOSE 8080
+# TODO: Replace this with a "real" http server (nginx) before prod!
+EXPOSE 5173
 
 CMD [ "pnpm", "dev"]
 

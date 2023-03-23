@@ -10,8 +10,11 @@ import { ProfilesMigration1676586883555 } from "../migrations/1676586883555-Prof
 import { Match } from "../models/match.js";
 import { AddMatches1677583994719 } from "../migrations/1677583994719-AddMatches";
 import { Message } from "../models/message.js";
-import {AddMessages1677588107950} from "../migrations/1677588107950-AddMessages.js";
-import {SoftDelete1677590464271} from "../migrations/1677590464271-SoftDelete.js";
+import { AddMessages1677588107950 } from "../migrations/1677588107950-AddMessages.js";
+import { SoftDelete1677590464271 } from "../migrations/1677590464271-SoftDelete.js";
+import { Game } from "../models/game.js";
+import { GameMigration1678325090178 } from "../migrations/1678325090178-GameMigration.js";
+import { updateGame1679357585306 } from "../migrations/1679357585306-updateGame.js";
 
 dotenv.config();
 
@@ -31,14 +34,17 @@ export const AppDataSource = new DataSource({
         IPHistory,
         Profile,
         Match,
-        Message
+        Message,
+        Game
     ],
     migrations: [
         Initialize1676281754950,
         ProfilesMigration1676586883555,
         AddMatches1677583994719,
         AddMessages1677588107950,
-        SoftDelete1677590464271
+        SoftDelete1677590464271,
+        GameMigration1678325090178,
+        updateGame1679357585306
     ],
     // DANGER DANGER our convenience will nuke production data!
     synchronize: false

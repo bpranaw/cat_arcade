@@ -4,6 +4,7 @@ import Home from './components/Home';
 import Match from './components/Match';
 import {useEffect, useState} from "react";
 import initialState from "./initialState";
+import Leaderboard from './components/Leaderboard';
 
 function App() {
 
@@ -17,12 +18,13 @@ function App() {
       <nav>
         <div className="menu">
           <Link to="/">Home</Link>
-          <Link to="/match">Match</Link>
+          <Link to="/leaderboard">Leaderboard</Link>
+          <a href="/Games/CatJump/game.html">Cat Jump</a>
         </div>
       </nav>
       <Routes>
-              <Route path="/match" element={<Match/>}/>
               <Route path="/" element={<Home/>}/>
+              <Route path="/leaderboard" element={<Leaderboard/>}/>
             </Routes>
         </div>
     )

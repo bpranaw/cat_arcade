@@ -7,6 +7,7 @@ import {Profile} from "./db/models/profile";
 import {Match} from "./db/models/match";
 import {Message} from "./db/models/message";
 import {readFileSync} from "node:fs";
+import {Game} from "./db/models/game";
 
 /**
  * App plugin where we construct our routes
@@ -111,19 +112,24 @@ export async function cat_arcade_routes(app: FastifyInstance): Promise<void> {
 
 		const {name, email} = req.body;
 
-		const user = new User();
-		user.name = name;
-		user.email = email;
+		const findUser = await app.db.user.findOne({where: {name: name, email: email}});
 
-		const ip = new IPHistory();
-		ip.ip = req.ip;
-		ip.user = user;
-		// transactional, transitively saves user to users table as well IFF both succeed
-		await ip.save();
-
-		//manually JSON stringify due to fastify bug with validation
-		// https://github.com/fastify/fastify/issues/4017
-		await reply.send(JSON.stringify({user, ip_address: ip.ip}));
+		if(findUser == null)
+		{
+			const user = new User();
+			user.name = name;
+			user.email = email;
+	
+			const ip = new IPHistory();
+			ip.ip = req.ip;
+			ip.user = user;
+			// transactional, transitively saves user to users table as well IFF both succeed
+			await ip.save();
+	
+			//manually JSON stringify due to fastify bug with validation
+			// https://github.com/fastify/fastify/issues/4017
+			await reply.send(JSON.stringify({user, ip_address: ip.ip}));
+		}
 	});
 
 
@@ -429,6 +435,84 @@ export async function cat_arcade_routes(app: FastifyInstance): Promise<void> {
 		await reply.send(JSON.stringify(res));
 	});
 
+	//***********************************************************************************************************************************************
+	//Leaderboard
+	
+	//Getting all high scores in order for catjump
+	app.get("/leaderboard/catjump", async (req: any, reply: FastifyReply) => {
+
+		const query = await app.db.game.createQueryBuilder("games").where("games.game_name = :name", { name: "catjump" }).orderBy("games.high_score", "DESC").getMany();	
+		reply.send(query);
+	});
+
+	//Creating/updating a high score value
+	app.post("/leaderboard/:user_id", async (req: any, reply: FastifyReply) => {
+		
+		const user_id = req.params.user_id;
+		const {game_name, high_score} = req.body;
+		
+		const current_user = await app.db.user.findOneByOrFail({id: user_id})
+
+		//Looking for user's high score for this game
+		let current_game = await app.db.game.findOne({
+			relations: ['user'], 
+			where: { 
+				user: {
+					id: user_id
+				},
+				name: game_name
+			},
+		});
+		
+		//We update the high score
+		if(current_game)
+		{
+			if(current_game.high_score < high_score)
+			{
+            	current_game.high_score = high_score;
+				await current_game.save();
+			}
+		}
+		//Make a new high score
+		else
+		{
+			let new_game = new Game();
+			new_game.user = current_user;
+			new_game.name = game_name;
+            new_game.high_score = high_score;
+
+            let date = new Date();
+            new_game.date_score_achieved = date.toLocaleString();
+
+			await new_game.save();
+		}
+
+		await reply.send(high_score);
+	});
+
+	//Deleting specific high scores
+	app.delete("/leaderboard/:user_id", async (req: any, reply: FastifyReply) => {
+		const user_id = req.params.user_id;
+		const {game_name} = req.body;
+		
+		//Looking for user's high score for this game
+		let current_game = await app.db.game.findOne({
+			relations: ['user'], 
+			where: { 
+				user: {
+					id: user_id
+				},
+				name: game_name
+			},
+		});
+
+		if(current_game)
+		{
+			let res = await app.db.game.remove(current_game);
+			await reply.send(JSON.stringify(res));
+		}
+	});
+
 }
 
 // Appease typescript request gods
@@ -450,3 +534,4 @@ export type IPostUsersResponse = {
 	 */
 	ip_address: string
 }
+

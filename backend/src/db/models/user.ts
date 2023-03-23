@@ -13,6 +13,7 @@ import {
 import {IPHistory} from "./ip_history";
 import {Profile} from "./profile";
 import {Message} from "./message";
+import {Game} from "./game";
 
 /**
  *  Class representing user table
@@ -46,6 +47,10 @@ export class User extends BaseEntity {
 	// Message - Recipient
 	@OneToMany((type) => Message, (mr: Message) => mr.recipient)
 	inbox: Relation<Message[]>;
+
+	//Game
+	@OneToMany((type) => Game, (game: Game) => game.user)
+	games: Relation<Game[]>;
 
 	@Column({
 		default: 0

@@ -1,10 +1,14 @@
-import {Users} from "./User";
+import LoginButton from "./Login";
+import LogoutButton from "./Logout";
+import UserProfile from "./userProfile";
 
 export default function Home() {
   return (<div>
       <Title/>
       <Subtitle/>
-			<Users/>
+			<LoginButton/>
+      <LogoutButton/>
+      <UserProfile/>
     </div>
   );
 }
@@ -14,5 +18,5 @@ export function Title() {
 }
 
 export function Subtitle() {
-  return (<h3>Where your pets find love(tm)</h3>)
+  return (<h3>Where you'll always find a cat and a game to play!</h3>)
 }
